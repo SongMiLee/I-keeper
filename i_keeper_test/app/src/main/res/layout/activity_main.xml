@@ -6,64 +6,40 @@
     android:orientation="vertical"
     android:visibility="visible"
 
-    android:background="#ffffffff">
+    android:background="#A8D9CF">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="350dp"
+            android:layout_width="280dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
             android:id="@+id/imageView"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/login_img"
+            android:background="@drawable/login_img01"
 
             />
-    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        >
         <EditText
-            android:id="@+id/TextView02"
+            android:id="@+id/input_id"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:hint="Input ID"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:hint="              Input ID"
+            android:background="#FFFFFF"
 
             />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-
-
-    </LinearLayout>
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+
         android:layout_gravity="center_horizontal"
-        android:background="#ffa8dacf"
+        android:background="@drawable/login_img02"
         android:layout_marginTop="20dp"
         />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:layout_gravity="right" />
 
 
 </LinearLayout>
