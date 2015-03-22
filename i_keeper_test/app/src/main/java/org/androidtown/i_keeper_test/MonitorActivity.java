@@ -1,6 +1,5 @@
 package org.androidtown.i_keeper_test;
 
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -13,7 +12,7 @@ import android.view.ViewGroup;
 import android.os.Build;
 
 
-public class MonitorActivity extends FragmentActivity {
+public class MonitorActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
