@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true" > <!--ont shot: 한 번만 실행됨-->
+
+    <item android:drawable="@mipmap/splash_img01" android:duration="500" />
+    <item android:drawable="@mipmap/splash_img02" android:duration="500" />
+    <item android:drawable="@mipmap/splash_img03" android:duration="500" />
+</animation-list>
