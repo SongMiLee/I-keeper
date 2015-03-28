@@ -8,7 +8,7 @@ public class Server {
 	
 	public static void main(String[] args) throws IOException
 	{
-		ServerSocket ss=new ServerSocket(52273);
+		ServerSocket ss=new ServerSocket(9999);
 		SocketHandle handler=null;
 		Socket ssoc;
 		System.out.println("서버 : 클라이언트의 접속을 기다림");
@@ -20,6 +20,6 @@ public class Server {
 			handler.start();
 		}
 		
-}
+	}
 
 }
