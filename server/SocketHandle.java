@@ -8,67 +8,71 @@ import java.sql.*;
 
 public class SocketHandle extends Thread {
 	
-	//public static String[] client_name;
 	public static ArrayList<String> client_name;
-	//client_name.add(" ");
 	Socket soc;
 	PrintWriter spw;
 	BufferedReader sbr;
-	//»ı¼ºÀÚ
+
+	//DB variable
+	String driverName;
+	String DBName;
+	String dbURL;
+	String SQL;
+	//ìƒì„±ì
 	SocketHandle(){client_name=new ArrayList<String>();};
 	SocketHandle(Socket s)
 	{
+		 //DB ì—°ë™
+                 driverName = "com.mysql.jdbc.Driver"; // ë“œë¼ì´ë²„ ì´ë¦„ ì§€ì •
+                 DBName = "ik";
+                 dbURL = "jdbc:mysql://173.194.233.38/"+DBName; // URL ì§€ì •
+
 		this.soc=s;
 		if(client_name==null){
 		client_name=new ArrayList<String>(); //
 		client_name.add(" ");
 		}
-		System.out.println("list ÃÊ±âÈ­ ¿Ï·á.....");
+		System.out.println("list ì´ˆê¸°í™” ì™„ë£Œ.....");
 		try{
 		spw=new PrintWriter(soc.getOutputStream(),true);
 		sbr=new BufferedReader(new InputStreamReader(soc.getInputStream()));
-		System.out.println("spw,sbr ÃÊ±âÈ­ ¿Ï·á.....");
-		//client_name.add(" ");
+		System.out.println("spw,sbr ì´ˆê¸°í™” ì™„ë£Œ.....");
 		}catch(Exception e){}
 	}
 	
 	public void run()
 	{
-		while(true)//¿¬°á µÇ ÀÖÀ¸¸é °è¼Ó ·çÇÁ¸¦ µ·´Ù
+		while(true)//ì—°ê²° ë˜ ìˆìœ¼ë©´ ê³„ì† ë£¨í”„ë¥¼ ëˆë‹¤
 		{
 			try{				
 				String information=sbr.readLine();
 				System.out.println(information);
 				if(information.indexOf("_login")!=-1)
 				{
-					System.out.println("Add List");
-					//Á¢¼Ó½Ã add list
 					String[] realinfo=information.split("=");
+					System.out.println("Login " + realinfo[1]);
 					
-					//DB ¿¬µ¿
-					String driverName = "com.mysql.jdbc.Driver"; // µå¶óÀÌ¹ö ÀÌ¸§ ÁöÁ¤
-	                String DBName = "ik";
-	                String dbURL = "jdbc:mysql://173.194.233.38/"+DBName; // URL ÁöÁ¤
-	                String SQL = "select id from cloinfo where id='"+realinfo[1]+"';";
-					
-	                Class.forName(driverName); // µå¶óÀÌ¹ö ·Îµå
-	                Connection con  = DriverManager.getConnection(dbURL,"root",""); // ¿¬°á
+			SQL = "select id from cloinfo where id='"+realinfo[1]+"';";			
+	                Class.forName(driverName); // ë“œë¼ì´ë²„ ë¡œë“œ
+	                Connection con  = DriverManager.getConnection(dbURL,"toor","toor"); // ì—°ê²°
 	                System.out.println("Mysql DB Connection.");
 	               
 	                Statement stmt = con.createStatement();
-	                stmt.executeQuery(SQL);
+	                stmt.executeQuery(SQL);//execute the SQL Query
 	                
 	                ResultSet result = stmt.executeQuery(SQL);
-	                if(!result.next()){
+	                if(!result.next()){//If db didn't find the id
 	                	System.out.println("There is no id "+realinfo[1]);
-	                	spw.println(0);
-	                	spw.flush();
-	                }else{
+	                	spw.println("false");
+				spw.flush();
+	                }else{//db find the id
 	                	System.out.println("There is id "+realinfo[1]);
-	                	spw.println(1);
-	                	spw.flush();
+	                	spw.println("true");
+				spw.flush();
 	                	
 	                }
+			con.close();
+			System.out.println("MySql DB disconnect");
 				}
 				else if(information.indexOf("_delete")!=-1)
 				{
@@ -79,7 +83,7 @@ public class SocketHandle extends Thread {
 					
 				}
 		
-			}catch(Exception e){}
+			}catch(Exception e){e.printStackTrace();}
 		}
 	
 	}
