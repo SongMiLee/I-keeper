@@ -11,10 +11,10 @@ public class Server {
 		ServerSocket ss=new ServerSocket(9999);
 		SocketHandle handler=null;
 		Socket ssoc;
-		System.out.println("¼­¹ö : Å¬¶óÀÌ¾ğÆ®ÀÇ Á¢¼ÓÀ» ±â´Ù¸²");
+		System.out.println("ì„œë²„ : í´ë¼ì´ì–¸íŠ¸ì˜ ì ‘ì†ì„ ê¸°ë‹¤ë¦¼");
 		//
 		while(true){
-			ssoc=ss.accept(); //Å¬¶óÀÌ¾ğÆ®¿Í ¿¬°áµÉ ¶§ ±îÁö ´ë±â
+			ssoc=ss.accept(); //í´ë¼ì´ì–¸íŠ¸ì™€ ì—°ê²°ë  ë•Œ ê¹Œì§€ ëŒ€ê¸°
 			System.out.println("Server Accept!");
 			handler=new SocketHandle(ssoc);
 			handler.start();
@@ -23,3 +23,4 @@ public class Server {
 	}
 
 }
+
