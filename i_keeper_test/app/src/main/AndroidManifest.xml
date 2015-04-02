@@ -26,6 +26,7 @@
             android:name=".MonitorActivity"
             android:label="@string/title_activity_monitor" >
         </activity>
+        <activity android:name=".SettingActivity"></activity>
     </application>
 <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
