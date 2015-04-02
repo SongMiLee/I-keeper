@@ -6,14 +6,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -66,7 +65,7 @@ public class MainActivity extends Activity {
                 //id 부분이 null이 아닌 경우
                 else
                 {
-                    //로그인 id 값을 버퍼에 바로 작성하도록 한다.
+                 //로그인 id 값을 버퍼에 바로 작성하도록 한다.
                     writer.println("_login=" + text);
                     writer.flush();
                     //프로그레스 다이얼로그를 띄운다.

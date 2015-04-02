@@ -1,5 +1,6 @@
 package org.androidtown.i_keeper_test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -88,9 +89,10 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        Intent intent = new Intent(this, SettingActivity.class);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(intent);
             return true;
         }
 
