@@ -65,7 +65,9 @@ public class MainActivity extends Activity {
                 //id 부분이 null이 아닌 경우
                 else
                 {
-                 //로그인 id 값을 버퍼에 바로 작성하도록 한다.
+
+                    startActivity(new Intent(MainActivity.this,MonitorActivity.class));
+            /*     //로그인 id 값을 버퍼에 바로 작성하도록 한다.
                     writer.println("_login=" + text);
                     writer.flush();
                     //프로그레스 다이얼로그를 띄운다.
@@ -102,7 +104,7 @@ public class MainActivity extends Activity {
                                 }
                             });
                         }
-                    }).start();
+                    }).start();*/
                 }
              }
         });
