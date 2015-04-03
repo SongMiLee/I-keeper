@@ -124,13 +124,6 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             }
         }
-        void endSocket(){
-            try {
-                socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 
