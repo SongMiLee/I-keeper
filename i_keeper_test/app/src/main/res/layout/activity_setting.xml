@@ -1,11 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#A8DACF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40dp"
+    tools:context="org.androidtown.i_keeper_test.SettingActivity">
 
     <TextView
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:text = "설정 액티비티입니다."
-        android:textSize = "30sp" />
+        android:text = "알림"
+        android:textSize = "25sp"
+        android:paddingBottom="10dp"/>
+    <LinearLayout
+        android:layout_width="275dp"
+        android:layout_height="30dp"
+        android:background="@drawable/checkbox_border">
+        <CheckBox
+            android:id="@+id/soundCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="소리" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="10dp"
+        android:background="#A8DACF"></LinearLayout>
+    <LinearLayout
+        android:layout_width="275dp"
+        android:layout_height="30dp"
+        android:background="@drawable/checkbox_border">
+        <CheckBox
+            android:id="@+id/vibrateCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="진동"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:text = "정보"
+        android:textSize = "25sp"
+        android:paddingTop = "20dp"
+        android:paddingBottom="10dp"/>
+    <LinearLayout
+        android:layout_width="275dp"
+        android:layout_height="30dp"
+        android:background="@drawable/checkbox_border">
+        <TextView
+            android:padding = "5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="17dp"
+            android:text="버전정보                            ver 1.0.0"/>
+     </LinearLayout>
 </LinearLayout>
