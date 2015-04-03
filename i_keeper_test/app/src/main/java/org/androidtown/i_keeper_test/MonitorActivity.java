@@ -82,6 +82,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
         getMenuInflater().inflate(R.menu.menu_monitor, menu);
         return true;
     }
+/*
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -98,6 +99,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
 
         return super.onOptionsItemSelected(item);
     }
+*/
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
@@ -138,9 +140,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
                 case 1:
                     cur_fragment = new Frag_List();
                     break;
-                case 2:
-                    cur_fragment = new Frag_Setting();
-                    break;
+
 
             }
 
@@ -151,7 +151,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 2 total pages.
             return 2;
         }
 
@@ -163,8 +163,6 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
                     return getString(R.string.title_section1).toUpperCase(l);
                 case 1:
                     return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
             }
             return null;
         }

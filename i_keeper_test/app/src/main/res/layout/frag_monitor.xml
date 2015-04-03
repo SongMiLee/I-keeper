@@ -13,5 +13,14 @@
         android:id="@+id/button"
         android:layout_gravity="center|center_vertical" />
 
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:id="@+id/graph"
+        android:layout_below="@+id/section_label"
+        android:layout_marginTop="150dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 
 </LinearLayout>
