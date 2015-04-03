@@ -37,12 +37,15 @@ public class MainActivity extends Activity {
     EditText edttext;
 
     String page="wait";
+    //user의 id 정보를 저장하기 위한 클래스 변수
+    UserInfo user;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
             startActivity(new Intent(this, SplashActivity.class));
+            user=new UserInfo();
 
 
             //소켓 핸들러 쓰레드를 생성 후 실행
@@ -85,14 +88,16 @@ public class MainActivity extends Activity {
                                 public void run() {
                                     if(!page.equals("wait"))//디폴트 값이 아니면 아래 2개의 if 문 중 하나를 실행
                                     {
-                                        if(page.equals("true")){
+                                        if(page.equals("true")){//id를 찾은 경우
                                             //프로그래스 창을 끈다.
                                             if(progressDialog!=null)
                                                 progressDialog.dismiss();
-                                            //다음 액티비티로 넘어간다.
+
+                                            //user 정보를 저장한 뒤 다음 액티비티로 넘어간다.
+                                            user.setUserID(text);
                                             startActivity(new Intent(MainActivity.this,MonitorActivity.class));
                                         }
-                                        if(page.equals("false")){
+                                        if(page.equals("false")){//id를 못 찾은 경우
                                             if(progressDialog!=null)
                                                 progressDialog.dismiss();
                                             Toast.makeText(getApplicationContext(),"id가 없습니다.",Toast.LENGTH_SHORT).show();
@@ -116,6 +121,13 @@ public class MainActivity extends Activity {
                 writer=new PrintWriter(socket.getOutputStream());
                 reader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        void endSocket(){
+            try {
+                socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
