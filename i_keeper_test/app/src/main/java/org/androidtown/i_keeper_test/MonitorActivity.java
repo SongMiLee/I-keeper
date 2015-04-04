@@ -12,10 +12,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
-import java.util.Locale;
 
 
 public class MonitorActivity extends ActionBarActivity implements ActionBar.TabListener {
@@ -62,17 +58,23 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
             }
         });
 
+        LayoutInflater inflater = LayoutInflater.from(this);
+
         // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
+        //for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+            // Create a tab with image to the page title defined by
             // the adapter. Also specify this Activity object, which implements
             // the TabListener interface, as the callback (listener) for when
             // this tab is selected.
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
-        }
+     actionBar.addTab(
+            actionBar.newTab()
+                   .setCustomView(inflater.inflate(R.layout.tab_image01, null))
+                   .setTabListener(this));
+    actionBar.addTab(
+             actionBar.newTab()
+                    .setCustomView(inflater.inflate(R.layout.tab_image02, null))
+                    .setTabListener(this));
+        //}
     }
 
 
@@ -82,6 +84,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
         getMenuInflater().inflate(R.menu.menu_monitor, menu);
         return true;
     }
+/*
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -98,6 +101,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
 
         return super.onOptionsItemSelected(item);
     }
+*/
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
@@ -138,9 +142,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
                 case 1:
                     cur_fragment = new Frag_List();
                     break;
-                case 2:
-                    cur_fragment = new Frag_Setting();
-                    break;
+
 
             }
 
@@ -151,11 +153,11 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 2 total pages.
             return 2;
         }
 
-        @Override
+        /*@Override
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
             switch (position) {
@@ -163,44 +165,10 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
                     return getString(R.string.title_section1).toUpperCase(l);
                 case 1:
                     return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
             }
             return null;
-        }
+        }*/
     }
-/*
-    *//**
-     * A placeholder fragment containing a simple view.
-     *//*
-    public static class PlaceholderFragment extends Fragment {
-        *//**
-         * The fragment argument representing the section number for this
-         * fragment.
-         *//*
-        private static final String ARG_SECTION_NUMBER = "section_number";
 
-        *//**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         *//*
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_monitor, container, false);
-            return rootView;
-        }
-    }*/
 
 }
