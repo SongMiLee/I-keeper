@@ -6,24 +6,25 @@
     >
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="Refresh"
-        android:id="@+id/button"
-        android:layout_gravity="center|center_vertical" />
 
     <com.jjoe64.graphview.GraphView
-        android:layout_width="match_parent"
+        android:layout_width="350dip"
         android:layout_height="200dip"
         android:id="@+id/graph"
+        android:layout_gravity="center"
         android:layout_below="@+id/section_label"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="#FFFFFF"
         />
 
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:id="@+id/button"
+        android:background="@drawable/tab_img02"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center|center_vertical" />
 
 </LinearLayout>
