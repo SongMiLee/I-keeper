@@ -9,7 +9,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Monitor"
+        android:layout_marginTop="80dp"
+        android:text="Refresh"
         android:id="@+id/button"
         android:layout_gravity="center|center_vertical" />
 
@@ -18,9 +19,11 @@
         android:layout_height="200dip"
         android:id="@+id/graph"
         android:layout_below="@+id/section_label"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="50dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="#FFFFFF"
+        />
 
 
 </LinearLayout>

@@ -12,6 +12,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.Locale;
 
 
 public class MonitorActivity extends ActionBarActivity implements ActionBar.TabListener {
@@ -58,23 +62,17 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
             }
         });
 
-        LayoutInflater inflater = LayoutInflater.from(this);
-
         // For each of the sections in the app, add a tab to the action bar.
-        //for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with image to the page title defined by
+        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+            // Create a tab with text corresponding to the page title defined by
             // the adapter. Also specify this Activity object, which implements
             // the TabListener interface, as the callback (listener) for when
             // this tab is selected.
-     actionBar.addTab(
-            actionBar.newTab()
-                   .setCustomView(inflater.inflate(R.layout.tab_image01, null))
-                   .setTabListener(this));
-    actionBar.addTab(
-             actionBar.newTab()
-                    .setCustomView(inflater.inflate(R.layout.tab_image02, null))
-                    .setTabListener(this));
-        //}
+            actionBar.addTab(
+                    actionBar.newTab()
+                            .setText(mSectionsPagerAdapter.getPageTitle(i))
+                            .setTabListener(this));
+        }
     }
 
 
@@ -84,7 +82,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
         getMenuInflater().inflate(R.menu.menu_monitor, menu);
         return true;
     }
-/*
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -101,7 +99,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
 
         return super.onOptionsItemSelected(item);
     }
-*/
+
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
@@ -148,7 +146,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
 
 
             return cur_fragment;
-         //   return PlaceholderFragment.newInstance(position + 1);
+            //   return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
@@ -157,7 +155,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
             return 2;
         }
 
-        /*@Override
+        @Override
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
             switch (position) {
@@ -167,8 +165,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
                     return getString(R.string.title_section2).toUpperCase(l);
             }
             return null;
-        }*/
+        }
     }
-
 
 }

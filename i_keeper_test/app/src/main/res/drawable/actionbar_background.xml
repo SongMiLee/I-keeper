@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <solid android:color="#51BA9B" />
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- STATES WHEN BUTTON IS NOT PRESSED -->
+
+
+    <item
+        android:drawable="@drawable/tab_img01" />
+
+</selector>
