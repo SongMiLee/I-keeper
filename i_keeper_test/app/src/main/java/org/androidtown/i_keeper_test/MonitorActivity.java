@@ -135,11 +135,15 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
 
             switch (position) {
                 case 0:
-                    cur_fragment = new Frag_Monitor();
+                    cur_fragment = new Frag_Realtime();
                     break;
                 case 1:
+                    cur_fragment = new Frag_Monitor();
+                    break;
+                case 2:
                     cur_fragment = new Frag_List();
                     break;
+
 
 
             }
@@ -152,7 +156,7 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
         @Override
         public int getCount() {
             // Show 2 total pages.
-            return 2;
+            return 3;
         }
 
         @Override
@@ -162,6 +166,8 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
                 case 0:
                     return getString(R.string.title_section1).toUpperCase(l);
                 case 1:
+                    return getString(R.string.title_section2).toUpperCase(l);
+                case 2:
                     return getString(R.string.title_section2).toUpperCase(l);
             }
             return null;

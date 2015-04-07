@@ -28,7 +28,7 @@
     <style name="MyActionBarTabs"
         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <!-- tab indicator -->
-        <item name="android:background">@drawable/actionbar_tab_indicator</item>
+
 
     </style>
 

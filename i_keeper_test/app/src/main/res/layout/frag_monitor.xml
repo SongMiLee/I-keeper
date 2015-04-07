@@ -5,7 +5,17 @@
     android:background="#A8DACF"
     >
 
+    <TextView
+        android:id="@+id/output"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center|center_vertical"
+        android:background="#FFFFFF"
+        android:textColor="#212121"
+        android:text="Click Refresh Button"
 
+        />
 
     <com.jjoe64.graphview.GraphView
         android:layout_width="350dip"
@@ -13,7 +23,7 @@
         android:id="@+id/graph"
         android:layout_gravity="center"
         android:layout_below="@+id/section_label"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="#FFFFFF"
@@ -22,7 +32,7 @@
     <Button
         android:layout_width="180dp"
         android:layout_height="40dp"
-        android:id="@+id/button"
+        android:id="@+id/btn_refresh"
         android:background="@drawable/tab_img02"
         android:layout_marginTop="80dp"
         android:layout_gravity="center|center_vertical" />
