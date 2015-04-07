@@ -112,6 +112,16 @@ public class Frag_Monitor extends Fragment {
                 writer.println("_Refresh="+user.returnUserID());
                 writer.flush();
 
+                //이 아래에 있는 소스의 위치는 바뀔 수 있다.
+                String str;
+                //서버에서 보낸 값을 읽는다.
+                while((str=reader.readLine())!=null){
+                    //"="로 값을 나눈다.
+                    String [] tmp=str.split("=");
+                    //디버그용으로 로그에 찍힘. ex) a, b, c
+                    System.out.println(tmp[0]+", "+tmp[1]+", "+tmp[2]);
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
