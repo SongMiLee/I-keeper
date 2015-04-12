@@ -63,16 +63,25 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
         });
 
         // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
-            // the adapter. Also specify this Activity object, which implements
-            // the TabListener interface, as the callback (listener) for when
-            // this tab is selected.
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
-        }
+        actionBar.addTab(
+                actionBar.newTab()
+                        .setIcon(R.drawable.icon_img01)     //icon_size : 110x110 (px)
+
+             //           .setText(R.string.title_section1)
+                        .setTabListener(this));
+        actionBar.addTab(
+                actionBar.newTab()
+                        .setIcon(R.drawable.icon_img02)
+                    //    .setText(R.string.title_section2)
+                        .setTabListener(this));
+        actionBar.addTab(
+                actionBar.newTab()
+                        .setIcon(R.drawable.icon_img03)
+//                        .setText(R.string.title_section3)
+
+                        .setTabListener(this));
+
+
     }
 
 

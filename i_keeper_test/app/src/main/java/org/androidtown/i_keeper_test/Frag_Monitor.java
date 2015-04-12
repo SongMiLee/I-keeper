@@ -27,9 +27,7 @@ import java.util.Random;
  */
 public class Frag_Monitor extends Fragment {
     //for network
-   /* Socket socket;
-    PrintWriter writer;
-    BufferedReader reader;*/
+
     int port=9999;
    // SocketHandle sh;
    private Socket socket;

@@ -5,11 +5,17 @@
     <string name="action_settings">Settings</string>
   
 
-    <!-- Monitor -->
-    <string name="title_section1">Realtime</string>
-    <!-- List -->
-    <string name="title_section2">Monitor</string>
-    <string name="title_section3">List</string>
+    <!-- Frag_Realtime -->
+    <string name="title_section1">
+        Realtime Status
+    </string>
+    <!-- Frag_Monitor  -->
+    <string name="title_section2">
+        Stress Level
+    </string>
+    <string name="title_section3">
+        Record List
+    </string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

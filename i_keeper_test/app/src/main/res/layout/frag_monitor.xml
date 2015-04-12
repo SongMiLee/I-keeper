@@ -12,7 +12,7 @@
         android:layout_marginTop="30dp"
         android:layout_gravity="center|center_vertical"
         android:background="#FFFFFF"
-        android:textColor="#212121"
+        android:textColor="#0C9C93"
         android:text="Click Refresh Button"
 
         />

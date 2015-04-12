@@ -28,6 +28,7 @@
     <style name="MyActionBarTabs"
         parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <!-- tab indicator -->
+        <item name="android:background"> #F1EDEE</item>
 
 
     </style>
