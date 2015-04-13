@@ -6,11 +6,19 @@ import java.io.ObjectOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import java.sql.*;
 public class Server extends HttpServlet{
-	DBaccess db;
 	String test="Hello Server";
 	String info;
+
+	//DB Access
+	String driverName="com.mysql.jdbc.Driver";
+   	String dbURL="jdbc:mysql://173.194.85.216:3306/ik";
+	String User="toor";
+   	String Password="toor";
+	String SQL;
+   	Connection conn;
+
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		PrintWriter out=resp.getWriter();
 		out.println("<html>");
@@ -28,17 +36,55 @@ public class Server extends HttpServlet{
 
 		try{
 
-		 info=(String)oin.readObject();
+		//read the value from stream
+		info=(String)oin.readObject();
+
+		//init the db connection
+                 Class.forName(driverName);
+                 conn=DriverManager.getConnection(dbURL,User,Password);
+	         Statement stmt=conn.createStatement();
+		
+		//realinfo[0]=> command (if application, realinfo[1]=>id)
 		 String[] realinfo=info.split("=");
 	
-		//create the db	
-		 db=new DBaccess();
-		 String result="wait";
+		//search the db	
+		 String result;
 
 			if(realinfo[0].equals("_login")){
-			   result=db.ResultLogin(realinfo[1]);	
+
+			  SQL="select * from cloinfo where id="+realinfo[1];
+			  ResultSet rs=stmt.executeQuery(SQL);
+
+			  if(rs.next()!=false){
+				result="true";
+			  }
+			  else
+				result="false";
+			
+			  oos.writeObject(result); 
 			}
-		 oos.writeObject(result);
+			else if(realinfo[0].equals("_Refresh")){
+
+			  SQL="select * from pulse where id="+realinfo[1];
+			  ResultSet rs=stmt.executeQuery(SQL);
+
+			  while(rs.next()){
+			     String id=rs.getString("id");
+			     int data=rs.getInt("data");
+			     Timestamp time=rs.getTimestamp("time");
+
+			     result=time+"="+id+"="+data;
+			     oos.writeObject(result);
+
+			  }
+			}
+			else if(realinfo[0].equals("_touchsensor")){
+			}
+			else if(realinfo[0].equals("_vibsensor")){
+			}
+			else if(realinfo[0].equals("_pulsesensor")){
+			}
+
 		}catch(Exception e) { e.printStackTrace(); }
 		finally{	oos.close(); }
 		oin.close();
