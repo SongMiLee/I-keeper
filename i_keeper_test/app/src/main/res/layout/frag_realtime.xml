@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A8DACF"
+    tools:context="org.androidtown.i_keeper_test.Frag_Realtime">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageView"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/realtime_img01"
+
+        />
+    <TextView
+        android:id="@+id/output"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="160dp"
+        android:background="#FFFFFF"
+        android:textColor="#0C9C93"
+        android:text="Loading . . . . "
+
+        />
+</FrameLayout>

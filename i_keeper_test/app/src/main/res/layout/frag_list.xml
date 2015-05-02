@@ -11,15 +11,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
 
-
         >
 
     <ListView
-        android:layout_width="352dp"
-        android:layout_height="400dp"
+        android:layout_width="320dp"
+        android:layout_height="300dp"
         android:id="@+id/listView"
         android:layout_gravity="center|center_vertical"
-        android:layout_marginTop="100dp"
+        android:background="@drawable/list_img01"
+        android:color ="#FFFFFF"
+        android:textColor="#A8DACF"
+        android:textAlignment="center"
+        android:layout_marginTop="80dp"
         />
 
         <ScrollView
@@ -34,21 +37,8 @@
         android:orientation="horizontal"
         >
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:text="New Button"
-        android:layout_gravity="center|center_horizontal"
-        />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button2"
-            android:layout_gravity="center|center_horizontal"
-            />
+
+
             </LinearLayout>
     </LinearLayout>
 

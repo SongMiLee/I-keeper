@@ -39,7 +39,11 @@ public class Frag_List extends Fragment {
         listView=(ListView)rootView.findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
-        list.add("for test");
+        list.add("I_KEEPER_LIST1");
+        list.add("I_KEEPER_LIST2");
+        list.add("I_KEEPER_LIST3");
+        list.add("I_KEEPER_LIST4");
+
         adapter.notifyDataSetChanged();
 
         //listView에서 item을 클릭했을 때 하는 이벤트를 정의한다.

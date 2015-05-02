@@ -14,6 +14,6 @@ public class SettingActivity extends ActionBarActivity {
         setContentView(R.layout.activity_setting);
 
         final ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Setting");
+        actionBar.setTitle("");
     }
 }

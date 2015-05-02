@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
@@ -25,12 +27,19 @@ import java.util.Random;
  */
 public class Frag_Monitor extends Fragment {
     //for network
-    Socket socket;
-    PrintWriter writer;
-    BufferedReader reader;
-    int port=9999;
-    SocketHandle sh;
 
+    int port=9999;
+   // SocketHandle sh;
+   private Socket socket;
+    BufferedReader socket_in;       //reader
+    PrintWriter socket_out;     //writer
+
+    //
+    TextView output;
+    Button btn_refresh;
+    String str;
+
+    //
 
     public Frag_Monitor() {
         // Required empty public constructor
@@ -49,15 +58,56 @@ public class Frag_Monitor extends Fragment {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.frag_monitor, container, false);
         user=new UserInfo();
-        //소켓 쓰레드를 발생시킨다.
-        sh =new SocketHandle();
-        sh.start();
 
         // Inflate the layout for this fragment
         GraphView graph = (GraphView) rootView.findViewById(R.id.graph);
         mSeries1 = new LineGraphSeries<DataPoint>(generateData());
         graph.addSeries(mSeries1);
 
+
+        //
+        output = (TextView) rootView.findViewById(R.id.output);
+        btn_refresh = (Button) rootView.findViewById(R.id.btn_refresh);
+
+        btn_refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //접속할 때 먼저 _Refresh를 보내 새로운 정보를 보내도록 한다.
+                socket_out.println("_Refresh="+user.returnUserID());
+                socket_out.flush();
+
+            }
+        });
+        Thread worker = new Thread() {
+            public void run() {
+                try {
+                    socket = new Socket("104.155.212.106", port);
+                    socket_out = new PrintWriter(socket.getOutputStream(), true);
+                    socket_in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+
+
+                    while ((str=socket_in.readLine())!=null) {
+
+                        output.post(new Runnable() {
+                            public void run() {
+                                //"="로 값을 나눈다.
+                                String [] tmp=str.split("=");
+                                output.setText("VALUE  : "+tmp[0]+", "+tmp[1]+", "+tmp[2]);
+                            }
+                        });
+                    }
+                } catch (Exception e) {
+                }
+            }
+        };
+        worker.start();
+
+
+//
         return rootView;
     }
     // @Override
@@ -83,10 +133,12 @@ public class Frag_Monitor extends Fragment {
     }
 
     private DataPoint[] generateData() {
-        int count = 30;
+        int count = 40;         // 총 시간 간격을 나타냄
+    //    double[] temp   = {2.0, 2.0, 2.0, 3.0};
         DataPoint[] values = new DataPoint[count];
         for (int i=0; i<count; i++) {
             double x = i;
+         //   double y = temp[i%4]+2;
             double f = mRand.nextDouble()*0.15+0.3;
             double y = Math.sin(i*f+2) + mRand.nextDouble()*0.3;
             DataPoint v = new DataPoint(x, y);
@@ -94,14 +146,18 @@ public class Frag_Monitor extends Fragment {
         }
         return values;
     }
+    //
+
+
+    //
 
     double mLastRandom = 2;
     Random mRand = new Random();
     private double getRandom() {
         return mLastRandom += mRand.nextDouble()*0.5 - 0.25;
     }
-
-    class SocketHandle extends Thread{
+//
+  /*  class SocketHandle extends Thread{
         public void run(){
             try {
                 //소켓 관련 writer, reader를 초기화 시킨다.
@@ -119,7 +175,7 @@ public class Frag_Monitor extends Fragment {
                     //"="로 값을 나눈다.
                     String [] tmp=str.split("=");
                     //디버그용으로 로그에 찍힘. ex) a, b, c
-                    System.out.println(tmp[0]+", "+tmp[1]+", "+tmp[2]);
+                        System.out.println(tmp[0]+", "+tmp[1]+", "+tmp[2]);
                 }
 
             } catch (IOException e) {
@@ -127,6 +183,6 @@ public class Frag_Monitor extends Fragment {
             }
 
         }
-    }
+    }*/
 
 }
