@@ -24,6 +24,71 @@
         android:background="#FFFFFF"
         android:textColor="#0C9C93"
         android:text="Loading . . . . "
-
         />
+
+
+    <TextView
+        android:id="@+id/t_sensor1"
+        android:layout_width="220dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="220dp"
+        android:background="#FFFFFF"
+        android:textColor="#0C9C93"
+        android:text="sensor1 "
+      />
+    <TextView
+        android:id="@+id/t_sensor2"
+        android:layout_width="220dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="260dp"
+        android:background="#FFFFFF"
+        android:textColor="#0C9C93"
+        android:text="sensor2 "
+        />
+    <TextView
+        android:id="@+id/t_sensor3"
+        android:layout_width="220dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="300dp"
+        android:background="#FFFFFF"
+        android:textColor="#0C9C93"
+        android:text="sensor3 "
+        />
+    <TextView
+        android:id="@+id/t_sensor4"
+        android:layout_width="220dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="340dp"
+        android:background="#FFFFFF"
+        android:textColor="#0C9C93"
+        android:text="sensor4 "
+        />
+
+    <TextView
+        android:id="@+id/t_sensor5"
+        android:layout_width="220dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="380dp"
+        android:background="#FFFFFF"
+        android:textColor="#0C9C93"
+        android:text="sensor5 "
+        />
+
+    <TextView
+        android:id="@+id/t_sensor6"
+        android:layout_width="220dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="420dp"
+        android:background="#FFFFFF"
+        android:textColor="#0C9C93"
+        android:text="sensor6 "
+        />
+
+
 </FrameLayout>
