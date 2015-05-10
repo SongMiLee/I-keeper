@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
     String id;
     EditText edttext;
 
-    String page="wait";
+    String page="";
     //user의 id 정보를 저장하기 위한 클래스 변수
     UserInfo user;
     Handler handler;
@@ -43,9 +43,8 @@ public class MainActivity extends Activity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-            startActivity(new Intent(this, MonitorActivity.class));
+          //  startActivity(new Intent(this, MonitorActivity.class));
 
-            //startActivity(new Intent(this, SplashActivity.class));
             user=new UserInfo();
             handler=new Handler();
 
@@ -64,14 +63,13 @@ public class MainActivity extends Activity {
                 //id 부분이 null이 아닌 경우
                 else
                 {
-                    // startActivity(new Intent(MainActivity.this,MonitorActivity.class));
                     //프로그레스 다이얼로그를 띄운다.
                     showDialog(1001);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             HttpClient client=new DefaultHttpClient();
-                            HttpPost getMethod=new HttpPost("http://192.168.25.6:8080/test/HelloWorld");
+                            HttpPost getMethod=new HttpPost("http://alert-height-91305.appspot.com/hello");
 
                             try{
                                 ArrayList<NameValuePair> NameValuePairs=new ArrayList<NameValuePair>(2);
@@ -86,11 +84,10 @@ public class MainActivity extends Activity {
                                 //값을 읽기 위한 cbr을 생성
                                 BufferedReader cbr=new BufferedReader(new InputStreamReader(response.getEntity().getContent(),"utf-8"));
 
-                                String res="";
                                 //null이 아닐때 값을 읽어서 res에 넣는다.
                                 while((line=cbr.readLine())!=null)
-                                    res+=line;
-                                System.out.println("result : "+res);
+                                    page+=line;
+                                System.out.println("result : "+page);
 
                             }catch (Exception e){
                                 e.printStackTrace();
@@ -117,6 +114,7 @@ public class MainActivity extends Activity {
                                         Toast.makeText(getApplicationContext(),"id가 없습니다.",Toast.LENGTH_SHORT).show();
 
                                     }
+                                    page="";
 
                                 }
                             });

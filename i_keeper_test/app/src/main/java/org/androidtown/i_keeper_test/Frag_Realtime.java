@@ -68,7 +68,7 @@ public class Frag_Realtime extends Fragment {
         t_sensor2 = (TextView) rootView.findViewById(R.id.t_sensor2);
         t_sensor3 = (TextView) rootView.findViewById(R.id.t_sensor3);
         t_sensor4 = (TextView) rootView.findViewById(R.id.t_sensor4);
-        t_sensor5 = (TextView) rootView.findViewById(R.id.t_sensor1);
+        t_sensor5 = (TextView) rootView.findViewById(R.id.t_sensor5);
         t_sensor6 = (TextView) rootView.findViewById(R.id.t_sensor6);
 
 
@@ -81,7 +81,7 @@ public class Frag_Realtime extends Fragment {
                 // HTTP 메서드의 인스턴스 생성
                 // URL과 함께 HttpClient 컴포넌트에서 제공하는 HTTP 메서드의 클래스의 생성자를 사용하여
                 // HTTP 의 요청라인을 지원하는 HTTP 메시지의 인스턴스를 생성한다.
-                HttpPost getMethod=new HttpPost("http://104.199.167.191/hello");
+                HttpPost getMethod=new HttpPost("http://alert-height-91305.appspot.com/hello");
 
                 try{
                     // 서버에 시간데이터를 보내고 해당 시간에 대한 센서값들을 얻어 온다.
@@ -103,16 +103,25 @@ public class Frag_Realtime extends Fragment {
                     while((readData=cbr.readLine())!=null){
                                 arr.add("value : "+readData);
                     }
-                    t_sensor1.setText(arr.get(0));
-                    t_sensor2.setText(arr.get(1));
-                    t_sensor3.setText(arr.get(2));
-                    t_sensor4.setText(arr.get(3));
-                    t_sensor5.setText(arr.get(4));
-                    t_sensor6.setText(arr.get(5));
+                    System.out.println("arr : "+ arr);
 
                 } catch(Exception e){
                     e.printStackTrace();
                 }
+
+                mHandler.post(new Runnable(){
+                        @Override
+                        public void run(){
+                            t_sensor1.setText(arr.get(0));
+                            t_sensor2.setText(arr.get(1));
+                            t_sensor3.setText(arr.get(2));
+                            t_sensor4.setText(arr.get(3));
+                            t_sensor5.setText(arr.get(4));
+                            t_sensor6.setText(arr.get(5));
+
+
+                        }
+                });
 
             }
         };
