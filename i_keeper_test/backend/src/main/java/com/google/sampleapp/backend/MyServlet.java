@@ -51,8 +51,27 @@ public class MyServlet extends HttpServlet {
                     spw.flush();
                 }
                 rs.close();
-                stmt.close();
             }
+            else if(mode.equals("TouchSensor_Request"))
+            {
+                spw.print("20\n30\n40\n50\n60\n70\n");
+                spw.flush();
+            }
+            else if(mode.equals("TouchSensor"))
+            {
+                String id=req.getParameter("id");
+                int r1=Integer.parseInt(req.getParameter("R1"));
+                int r2=Integer.parseInt(req.getParameter("R2"));
+                int l1=Integer.parseInt(req.getParameter("L1"));
+                int l2=Integer.parseInt(req.getParameter("L2"));
+
+                SQL="insert into touchsensor values(default,\'"+id+"\',"+l1+","+l2+","+r1+","+r2+")";
+
+                stmt.executeUpdate(SQL);
+                spw.write("Okay ! Write the DB");
+                spw.flush();
+            }
+            stmt.close();
             conn.close();
 
         }
