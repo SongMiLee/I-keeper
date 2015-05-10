@@ -104,6 +104,15 @@ public class Frag_Realtime extends Fragment {
                                 arr.add("value : "+readData);
                     }
                     System.out.println("arr : "+ arr);
+<<<<<<< HEAD
+=======
+                    t_sensor1.setText(arr.get(0));
+                    t_sensor2.setText(arr.get(1));
+                    t_sensor3.setText(arr.get(2));
+                    t_sensor4.setText(arr.get(3));
+                    t_sensor5.setText(arr.get(4));
+                    t_sensor6.setText(arr.get(5));
+>>>>>>> 99dd66c7282d17eb417dd214bc846cf1558e1586
 
                 } catch(Exception e){
                     e.printStackTrace();
