@@ -1,4 +1,4 @@
-﻿package org.androidtown.i_keeper_test;
+package org.androidtown.i_keeper_test;
 
 
 import android.os.Bundle;
@@ -51,7 +51,7 @@ public class Frag_Realtime extends Fragment {
 
     private final Handler mHandler = new Handler();
     private Runnable mTimer1;
-//
+    //
     private boolean running = false;
     ProgressHandler handler;        //객체 생성
     //
