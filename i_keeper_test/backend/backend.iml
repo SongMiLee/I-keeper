@@ -10,24 +10,14 @@
       <configuration>
         <option name="HTTP_ADDRESS" value="localhost" />
         <option name="HTTP_PORT" value="8080" />
-<<<<<<< HEAD
         <option name="WAR_DIR" value="C:\androidProject\Project\i_keeper_test\backend\build\exploded-app" />
         <option name="WEB_APP_DIR" value="C:\androidProject\Project\i_keeper_test\backend\src\main\webapp" />
         <option name="APPENGINE_SDKROOT" value="C:\Users\ehye\.gradle\appengine-sdk\appengine-java-sdk-1.9.18" />
-=======
-        <option name="WAR_DIR" value="C:\Users\user\Documents\I-keeper\i_keeper_test\backend\build\exploded-app" />
-        <option name="WEB_APP_DIR" value="C:\Users\user\Documents\I-keeper\i_keeper_test\backend\src\main\webapp" />
-        <option name="APPENGINE_SDKROOT" value="C:\Users\user\.gradle\appengine-sdk\appengine-java-sdk-1.9.18" />
->>>>>>> 99dd66c7282d17eb417dd214bc846cf1558e1586
       </configuration>
     </facet>
     <facet type="java-gradle" name="Java-Gradle">
       <configuration>
         <option name="BUILD_FOLDER_PATH" value="$MODULE_DIR$/build" />
-<<<<<<< HEAD
-=======
-        <option name="BUILDABLE" value="true" />
->>>>>>> 99dd66c7282d17eb417dd214bc846cf1558e1586
       </configuration>
     </facet>
   </component>
@@ -36,13 +26,8 @@
     <output-test url="file://$MODULE_DIR$/build/classes/test" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-<<<<<<< HEAD
       <sourceFolder url="file://$MODULE_DIR$/build/generated-source/endpoints/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-=======
-      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated-source/endpoints/java" isTestSource="false" />
->>>>>>> 99dd66c7282d17eb417dd214bc846cf1558e1586
       <sourceFolder url="file://$MODULE_DIR$/src/functionalTest/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/endpointsSrc/resources" type="java-resource" />
@@ -56,9 +41,5 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="servlet-api-2.5" level="project" />
   </component>
-<<<<<<< HEAD
 </module>
 
-=======
-</module>
->>>>>>> 99dd66c7282d17eb417dd214bc846cf1558e1586
