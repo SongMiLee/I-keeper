@@ -2,12 +2,11 @@ package org.androidtown.i_keeper_test;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
@@ -19,7 +18,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -104,15 +102,14 @@ public class Frag_Realtime extends Fragment {
                                 arr.add("value : "+readData);
                     }
                     System.out.println("arr : "+ arr);
-<<<<<<< HEAD
-=======
+
                     t_sensor1.setText(arr.get(0));
                     t_sensor2.setText(arr.get(1));
                     t_sensor3.setText(arr.get(2));
                     t_sensor4.setText(arr.get(3));
                     t_sensor5.setText(arr.get(4));
                     t_sensor6.setText(arr.get(5));
->>>>>>> 99dd66c7282d17eb417dd214bc846cf1558e1586
+
 
                 } catch(Exception e){
                     e.printStackTrace();
