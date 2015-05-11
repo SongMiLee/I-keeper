@@ -9,10 +9,6 @@
     <facet type="java-gradle" name="Java-Gradle">
       <configuration>
         <option name="BUILD_FOLDER_PATH" value="$MODULE_DIR$/build" />
-<<<<<<< HEAD
-=======
-        <option name="BUILDABLE" value="false" />
->>>>>>> 99dd66c7282d17eb417dd214bc846cf1558e1586
       </configuration>
     </facet>
   </component>
@@ -26,3 +22,4 @@
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
+
