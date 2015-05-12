@@ -35,7 +35,7 @@ public class Frag_Realtime extends Fragment {
 
 
     TextView output;
-    TextView t_sensor1, t_sensor2,t_sensor3,t_sensor4,t_sensor5,t_sensor6;
+    TextView p_sensor_result1, p_sensor_result2;
     String str;
     int port=9999;
     private Socket socket;
@@ -79,12 +79,8 @@ public class Frag_Realtime extends Fragment {
         View rootView =  inflater.inflate(R.layout.frag_realtime, container, false);
         user=new UserInfo();
         output = (TextView) rootView.findViewById(R.id.output);
-        t_sensor1 = (TextView) rootView.findViewById(R.id.t_sensor1);
-        t_sensor2 = (TextView) rootView.findViewById(R.id.t_sensor2);
-        t_sensor3 = (TextView) rootView.findViewById(R.id.t_sensor3);
-        t_sensor4 = (TextView) rootView.findViewById(R.id.t_sensor4);
-        t_sensor5 = (TextView) rootView.findViewById(R.id.t_sensor5);
-        t_sensor6 = (TextView) rootView.findViewById(R.id.t_sensor6);
+        p_sensor_result1 = (TextView) rootView.findViewById(R.id.p_sensor_result1);
+        p_sensor_result2 = (TextView) rootView.findViewById(R.id.p_sensor_result2);
 
         handler = new ProgressHandler();
 
@@ -109,9 +105,9 @@ public class Frag_Realtime extends Fragment {
                     //값을 읽기 위한 cbr을 생성
                     BufferedReader cbr=new BufferedReader(new InputStreamReader(response.getEntity().getContent(),"utf-8"));
                     while((readData=cbr.readLine())!=null){
-                        arr.add("value : "+readData);
+                        arr.add(readData);
                     }
-                    System.out.println("arr : " + arr);
+                    //System.out.println("arr : " + arr);
 
                     //
 
@@ -139,16 +135,26 @@ public class Frag_Realtime extends Fragment {
         running = false;
 
     }
-
+//spw.print("20\n30\n40\n50\n60\n70\n");
     public class ProgressHandler extends Handler{ //Handler 클래스를 상속하여 새로운 핸들러 클래스를 정의
         public void handleMessage(Message msg){
             // 여기서 setTExt
-            t_sensor1.setText(arr.get(0));
-            t_sensor2.setText(arr.get(1));
-            t_sensor3.setText(arr.get(2));
-            t_sensor4.setText(arr.get(3));
-            t_sensor5.setText(arr.get(4));
-            t_sensor6.setText(arr.get(5));
+            p_sensor_result1.setText("");
+        for(int i=0; i<30 ; i+=2) {
+            p_sensor_result1.append("  value" + i + " : " + arr.get(i)+"  value" +( i+1) + " : " + arr.get(i+1)+"\n");
+        }
+            p_sensor_result2.setText("");
+            for(int i=30; i<60 ; i+=2) {
+                p_sensor_result2.append("  value" + i + " : " + arr.get(i)+"  value" +( i+1) + " : " + arr.get(i+1)+"\n");
+            }
+/*
+            for(int i=0 ; i<30 ; i++) {
+                p_sensor_result1.setText("  value"+i+" : "+arr.get(i));
+            }
+            for(int i=30 ; i<60 ; i++) {
+                p_sensor_result2.setText("  value"+i+" : "+arr.get(i));
+            }
+*/
 
         }
     }
