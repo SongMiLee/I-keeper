@@ -39,8 +39,8 @@ public class MyServlet extends HttpServlet {
             //Login일 때
             if(mode.equals("Login"))
             {
+                //온 값에서 id 값을 분리해 낸다.
                 String id=request.getParameter("id");
-                System.out.println(id);
                 SQL="SELECT * FROM cloinfo WHERE id=\'"+id+"\'";
                 ResultSet rs=stmt.executeQuery(SQL);
                 if(rs.next())
@@ -58,10 +58,25 @@ public class MyServlet extends HttpServlet {
             //앱에서 TouchSensor_Request를 요청 할 때
             else if(mode.equals("TouchSensor_Request"))
             {
-                spw.print("20\n30\n40\n50\n60\n70\n");
-                spw.flush();
+                String id="1st";//request.getParameter("id");
+                String r1,r2,l1,l2;
+                SQL="SELECT * FROM touchsensor WHERE id=\'"+id+"\'";
+                ResultSet rs=stmt.executeQuery(SQL);
+                while(rs.next())
+                {
+                    r1=rs.getString("sensor1");
+                    r2=rs.getString("sensor2");
+                    l1=rs.getString("sensor3");
+                    l2=rs.getString("sensor4");
+
+                    spw.print(r1+"\n"+r2+"\n"+l1+"\n"+l2+"\n");
+                    spw.flush();
+                }
+
+                //spw.print("20\n30\n40\n50\n60\n70\n");
+                //spw.flush();
             }
-            //의류에서 TouchSensor 값을 보낼 때
+            //의류에서 TouchSensor 값을 보내고 DB에 작성하는 부분.
             else if(mode.equals("TouchSensor"))
             {
                 String id=request.getParameter("id");
