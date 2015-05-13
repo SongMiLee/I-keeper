@@ -135,26 +135,21 @@ public class Frag_Realtime extends Fragment {
         running = false;
 
     }
-//spw.print("20\n30\n40\n50\n60\n70\n");
+    //spw.print("20\n30\n40\n50\n60\n70\n");
     public class ProgressHandler extends Handler{ //Handler 클래스를 상속하여 새로운 핸들러 클래스를 정의
         public void handleMessage(Message msg){
             // 여기서 setTExt
+/*
             p_sensor_result1.setText("");
-        for(int i=0; i<30 ; i+=2) {
-            p_sensor_result1.append("  value" + i + " : " + arr.get(i)+"  value" +( i+1) + " : " + arr.get(i+1)+"\n");
-        }
+            for(int i=0; i<30 ; i+=2) {
+                p_sensor_result1.append("  value" + i + " : " + arr.get(i)+"  value" +( i+1) + " : " + arr.get(i+1)+"\n");
+            }
             p_sensor_result2.setText("");
             for(int i=30; i<60 ; i+=2) {
                 p_sensor_result2.append("  value" + i + " : " + arr.get(i)+"  value" +( i+1) + " : " + arr.get(i+1)+"\n");
             }
-/*
-            for(int i=0 ; i<30 ; i++) {
-                p_sensor_result1.setText("  value"+i+" : "+arr.get(i));
-            }
-            for(int i=30 ; i<60 ; i++) {
-                p_sensor_result2.setText("  value"+i+" : "+arr.get(i));
-            }
 */
+
 
         }
     }
