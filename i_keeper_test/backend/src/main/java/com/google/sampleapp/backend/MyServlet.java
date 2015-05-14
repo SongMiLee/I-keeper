@@ -5,15 +5,21 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+
 import javax.servlet.*;
 import com.google.appengine.api.utils.SystemProperty;
+import com.google.sampleapp.backend.MessagingEndpoint;
+
 /**
  * Created by user on 2015-05-13.
  */
+
 public class MyServlet extends HttpServlet {
     String SQL;
     Statement stmt;
     Connection conn;
+
+    MessagingEndpoint message;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
@@ -22,6 +28,7 @@ public class MyServlet extends HttpServlet {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter spw=new PrintWriter(response.getOutputStream());
+        message.sendMessage("Hello Device");
         try{
             //Google app engine에 올려서 사용할 때
             if(SystemProperty.environment.value()==SystemProperty.Environment.Value.Production) {
@@ -79,6 +86,8 @@ public class MyServlet extends HttpServlet {
             //의류에서 TouchSensor 값을 보내고 DB에 작성하는 부분.
             else if(mode.equals("TouchSensor"))
             {
+                message=new MessagingEndpoint();
+
                 String id=request.getParameter("id");
                 int r1=Integer.parseInt(request.getParameter("R1"));
                 int r2=Integer.parseInt(request.getParameter("R2"));
@@ -86,7 +95,8 @@ public class MyServlet extends HttpServlet {
                 int l2=Integer.parseInt(request.getParameter("L2"));
 
                 SQL="insert into touchsensor values(default,\'"+id+"\',"+l1+","+l2+","+r1+","+r2+")";
-
+                if(r1>=300 || r2>=300 || l1>=300 || l2>=300)
+                    message.sendMessage("아이의 상태가 이상합니다.");
                 stmt.executeUpdate(SQL);
                 spw.write("Okay ! Write the DB");
                 spw.flush();
