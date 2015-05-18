@@ -34,8 +34,7 @@ import java.util.ArrayList;
 public class Frag_Realtime extends Fragment {
 
 
-    TextView output;
-    TextView p_sensor_result1, p_sensor_result2;
+    TextView p_sensor_result1;
     String str;
     int port=9999;
     private Socket socket;
@@ -43,10 +42,12 @@ public class Frag_Realtime extends Fragment {
     PrintWriter socket_out;     //writer
     //유저 정보
     UserInfo user;
-
+    String user_id ="1st";
     //
     String readData="";
     ArrayList<String> arr = new ArrayList<String>();
+
+
     //
 
     private final Handler mHandler = new Handler();
@@ -78,14 +79,12 @@ public class Frag_Realtime extends Fragment {
 
         View rootView =  inflater.inflate(R.layout.frag_realtime, container, false);
         user=new UserInfo();
-        output = (TextView) rootView.findViewById(R.id.output);
-        p_sensor_result1 = (TextView) rootView.findViewById(R.id.p_sensor_result1);
-        p_sensor_result2 = (TextView) rootView.findViewById(R.id.p_sensor_result2);
 
+        p_sensor_result1 = (TextView) rootView.findViewById(R.id.p_sensor_result1);
         handler = new ProgressHandler();
 
         return rootView;
-        //  return inflater.inflate(R.layout.frag_realtime, container, false);
+
     }
 
     public void onStart(){
@@ -95,21 +94,22 @@ public class Frag_Realtime extends Fragment {
 
                 try{
 
-                    ArrayList<NameValuePair> NameValuePairs=new ArrayList<NameValuePair>(1);
+                    ArrayList<NameValuePair> NameValuePairs=new ArrayList<NameValuePair>();
                     //보낼 값을 ArrayList에 키와 값으로 저장을 한다.
-                    NameValuePairs.add(new BasicNameValuePair("Mode","TouchSensor_Request"));
+                    NameValuePairs.add(new BasicNameValuePair("id",user_id));
+                    NameValuePairs.add(new BasicNameValuePair("Mode","SensorValue_Request"));
+
                     getMethod.setEntity(new UrlEncodedFormEntity(NameValuePairs));
                     //값을 보낸다.
                     HttpResponse response = client.execute(getMethod);
 
                     //값을 읽기 위한 cbr을 생성
                     BufferedReader cbr=new BufferedReader(new InputStreamReader(response.getEntity().getContent(),"utf-8"));
+                    //    System.out.printf(cbr.read()+"\n");
                     while((readData=cbr.readLine())!=null){
                         arr.add(readData);
+                        System.out.println("result from server : "+readData);
                     }
-                    //System.out.println("arr : " + arr);
-
-                    //
 
                     Message msg = handler.obtainMessage();
                     handler.sendMessage(msg);
@@ -139,14 +139,17 @@ public class Frag_Realtime extends Fragment {
     public class ProgressHandler extends Handler{ //Handler 클래스를 상속하여 새로운 핸들러 클래스를 정의
         public void handleMessage(Message msg){
             // 여기서 setTExt
+
+            p_sensor_result1.setText("  value" + arr.get(0));
+
+            //  p_sensor_result1.append("  value" +arr.get(1));
+
 /*
-            p_sensor_result1.setText("");
-            for(int i=0; i<30 ; i+=2) {
-                p_sensor_result1.append("  value" + i + " : " + arr.get(i)+"  value" +( i+1) + " : " + arr.get(i+1)+"\n");
+            for(int i=0 ; i<30 ; i++) {
+                p_sensor_result1.setText("  value"+i+" : "+arr.get(i));
             }
-            p_sensor_result2.setText("");
-            for(int i=30; i<60 ; i+=2) {
-                p_sensor_result2.append("  value" + i + " : " + arr.get(i)+"  value" +( i+1) + " : " + arr.get(i+1)+"\n");
+            for(int i=30 ; i<60 ; i++) {
+                p_sensor_result2.setText("  value"+i+" : "+arr.get(i));
             }
 */
 
