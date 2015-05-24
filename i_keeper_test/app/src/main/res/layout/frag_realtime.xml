@@ -15,38 +15,52 @@
         android:background="@drawable/realtime_img01"
 
         />
+
     <TextView
-        android:id="@+id/output"
-        android:layout_width="220dp"
-        android:layout_height="30dp"
+        android:id="@+id/user_status"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="140dp"
         android:background="#FFFFFF"
+        android:text = "Loading . . ."
+        android:gravity="center_horizontal"
+        android:textSize="30dp"
         android:textColor="#0C9C93"
-        android:text="Loading . . . . "
         />
 
-
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:id="@+id/stree_level"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/realtime_img03"
+        android:textSize ="30dp"
+        />
     <TextView
         android:id="@+id/p_sensor_result1"
-        android:layout_width="220dp"
-        android:layout_height="120dp"
+        android:text = "Loading . . ."
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="80dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="240dp"
         android:background="#FFFFFF"
         android:textColor="#0C9C93"
-        android:text="sensor1 "
-      />
-    <TextView
-        android:id="@+id/p_sensor_result2"
-        android:layout_width="220dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="360dp"
-        android:background="#FFFFFF"
-        android:textColor="#0C9C93"
-        android:text="sensor2 "
+        android:textSize="20dp"
         />
 
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:id="@+id/imageView2"
+        android:layout_marginTop="310dp"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/realtime_img02"
+        android:textSize ="30dp"
+        />
 
 </FrameLayout>

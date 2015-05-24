@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 
-public class SplashActivity extends Activity { //ActionBarActivity로 바꿔야 하나?
+public class SplashActivity extends Activity {
 
     private AnimationDrawable frameAnimation;
     private ImageView view;

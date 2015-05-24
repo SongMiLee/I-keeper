@@ -2,11 +2,9 @@ package org.androidtown.i_keeper_test;
 
 
 import android.os.Bundle;
-import android.os.Message;
-import android.support.v4.app.Fragment;
-
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +19,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -35,35 +31,27 @@ public class Frag_Realtime extends Fragment {
 
 
     TextView p_sensor_result1;
+    TextView user_status_result;
     String str;
-    int port=9999;
-    private Socket socket;
-    BufferedReader socket_in;       //reader
-    PrintWriter socket_out;     //writer
+
     //유저 정보
     UserInfo user;
     String user_id ="1st";
     //
     String readData="";
-    ArrayList<String> arr = new ArrayList<String>();
-
+    ArrayList<String> arr;
+    ArrayList<String> pulse_sensor;
+    ArrayList<String> user_status ;
 
     //
+    private boolean isRunning = false;
 
-    private final Handler mHandler = new Handler();
-    private Runnable mTimer1;
     //
-    private boolean running = false;
-    ProgressHandler handler;        //객체 생성
     //
-    // 메인 스레드가 처리해야 할 루틴
-
-    //HttpClient 인스턴스 생성
-    HttpClient client=new DefaultHttpClient();
-    // HTTP 메서드의 인스턴스 생성
-    // URL과 함께 HttpClient 컴포넌트에서 제공하는 HTTP 메서드의 클래스의 생성자를 사용하여
-    // HTTP 의 요청라인을 지원하는 HTTP 메시지의 인스턴스를 생성한다.
-    HttpPost getMethod=new HttpPost("http://alert-height-91305.appspot.com/hello");
+    Handler handler;
+    ProgressRunnable runnable;
+    //
+    String[] temp5;
 
     //
     public Frag_Realtime() {
@@ -81,79 +69,142 @@ public class Frag_Realtime extends Fragment {
         user=new UserInfo();
 
         p_sensor_result1 = (TextView) rootView.findViewById(R.id.p_sensor_result1);
-        handler = new ProgressHandler();
+        p_sensor_result1.setText("");
+        user_status_result = (TextView)rootView.findViewById(R.id.user_status);
 
+        handler = new Handler();
+        runnable = new ProgressRunnable();
         return rootView;
 
     }
-
-    public void onStart(){
+    //
+    //@Override
+    public void onStart() {
         super.onStart();
+
+        //스레드 시작
         Thread thread1 = new Thread(new Runnable(){
             public void run(){
+                while(isRunning) {
 
-                try{
+                    try {
+                        Thread.sleep(2000);
+                        arr = new ArrayList<String>();
+                        pulse_sensor = new ArrayList<String>();
+                        user_status = new ArrayList<String>();
 
-                    ArrayList<NameValuePair> NameValuePairs=new ArrayList<NameValuePair>();
-                    //보낼 값을 ArrayList에 키와 값으로 저장을 한다.
-                    NameValuePairs.add(new BasicNameValuePair("id",user_id));
-                    NameValuePairs.add(new BasicNameValuePair("Mode","SensorValue_Request"));
 
-                    getMethod.setEntity(new UrlEncodedFormEntity(NameValuePairs));
-                    //값을 보낸다.
-                    HttpResponse response = client.execute(getMethod);
+                        //HttpClient 인스턴스 생성
+                        HttpClient client = new DefaultHttpClient();
+                        // HTTP 메서드의 인스턴스 생성
+                        // URL과 함께 HttpClient 컴포넌트에서 제공하는 HTTP 메서드의 클래스의 생성자를 사용하여
+                        // HTTP 의 요청라인을 지원하는 HTTP 메시지의 인스턴스를 생성한다.
+                        HttpPost getMethod = new HttpPost("http://alert-height-91305.appspot.com/hello");
 
-                    //값을 읽기 위한 cbr을 생성
-                    BufferedReader cbr=new BufferedReader(new InputStreamReader(response.getEntity().getContent(),"utf-8"));
-                    //    System.out.printf(cbr.read()+"\n");
-                    while((readData=cbr.readLine())!=null){
-                        arr.add(readData);
-                        System.out.println("result from server : "+readData);
+                        ArrayList<NameValuePair> NameValuePairs = new ArrayList<NameValuePair>();
+                        //보낼 값을 ArrayList에 키와 값으로 저장을 한다.
+                        NameValuePairs.add(new BasicNameValuePair("id", user_id));
+                        NameValuePairs.add(new BasicNameValuePair("Mode", "SensorValue_Request"));
+                        getMethod.setEntity(new UrlEncodedFormEntity(NameValuePairs));
+                        //값을 보낸다.
+                        HttpResponse response = null;
+                        try {
+                            response = client.execute(getMethod);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        //값을 읽기 위한 cbr을 생성
+                        Thread.sleep(2000);
+
+                        BufferedReader cbr = null;
+                        try {
+                            cbr = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "utf-8"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            while ((readData = cbr.readLine()) != null) {
+                                arr.add(readData);
+
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        //   System.out.println(arr);
+
+                        client.getConnectionManager().shutdown();
+
+                    } catch (Exception ex) {
+                        Log.e("SampleThreadActivity", "Exception in processing message", ex);
                     }
 
-                    Message msg = handler.obtainMessage();
-                    handler.sendMessage(msg);
+                    //  System.out.println(arr.get(0)+"/"+arr.get(1));
+                    ////////////////////////////////////////////////////////////////////////////////////////////////// data  processing start
 
-                    //
+                    if(arr.get(0).equals("error")){
+                        pulse_sensor.add("정보를 받아오는 중입니다");
+                        pulse_sensor.add("정보를 받아오는 중입니다");
+                        user_status.add("정보를 받아오는 중입니다");
+                        user_status.add("정보를 받아오는 중입니다");
+                       /* temp1 = arr.get(i).split("=");
+                        left_t_sensor1.add(temp1[1]);*/
+                    }
+                    else {
+                        temp5 = arr.get(0).split("=");
+                        for (int i = 0; i < temp5.length; i++) {
+                            pulse_sensor.add(temp5[1]);
+                        }
 
-                } catch(Exception e){
-                    e.printStackTrace();
+                        temp5 = arr.get(1).split("=");
+                        for (int i = 0; i < temp5.length; i++) {
+                            user_status.add(temp5[1]);
+                        }
+
+
+                    }
+////////////////////////////////////////////////////////////////////////////////////////////////  data processing end
+
+                    handler.post(runnable);
+              /*      arr.clear();
+                    left_t_sensor1.clear();*/
                 }
-
             }
 
         });
-
+        isRunning = true;
         thread1.start();
     }
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-    //@Override
-    public void onStop() {
+    public void onPause(){
+        super.onPause();
+        isRunning = false;
+    }
+    public void onStop(){
         super.onStop();
 
-        running = false;
-
+        isRunning = false;
     }
-    //spw.print("20\n30\n40\n50\n60\n70\n");
-    public class ProgressHandler extends Handler{ //Handler 클래스를 상속하여 새로운 핸들러 클래스를 정의
-        public void handleMessage(Message msg){
-            // 여기서 setTExt
 
-            p_sensor_result1.setText("  value" + arr.get(0));
-
-            //  p_sensor_result1.append("  value" +arr.get(1));
-
-/*
-            for(int i=0 ; i<30 ; i++) {
-                p_sensor_result1.setText("  value"+i+" : "+arr.get(i));
+    // Runnable 인터페이스를 구현하는 새로운 클래스 정의
+    public class ProgressRunnable implements  Runnable{
+        public void run(){
+            //            p_sensor_result1.append(readData+"\n");
+            String temp = "";
+            if(user_status.get(1).equals("FALSE")) {
+                temp = "안정";
             }
-            for(int i=30 ; i<60 ; i++) {
-                p_sensor_result2.setText("  value"+i+" : "+arr.get(i));
+            else if(user_status.get(1).equals("TRUE")){
+                temp = "위험";
             }
-*/
+            else{
+                temp = "정보를 받아오는 중입니다.";
+            }
 
-
+            user_status_result.setText(temp+"\n");
+            p_sensor_result1.setText("    "+pulse_sensor.get(1)+"\n");
+ /*           "\n"+"                   현재 아이의 스트레스 지수 : \n"
+                    +"                               "+*/
         }
     }
 }

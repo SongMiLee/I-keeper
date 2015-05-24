@@ -9,14 +9,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.Locale;
-
+import java.util.Random;
 
 public class MonitorActivity extends ActionBarActivity implements ActionBar.TabListener {
 
@@ -29,11 +26,15 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
-
+    /**
+     * collapseKey 설정을 위한 Random 객체
+     */
+    private Random random ;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,24 +68,19 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
                 actionBar.newTab()
                         .setIcon(R.drawable.icon_img01)     //icon_size : 110x110 (px)
 
-             //           .setText(R.string.title_section1)
+                                //           .setText(R.string.title_section1)
                         .setTabListener(this));
         actionBar.addTab(
                 actionBar.newTab()
                         .setIcon(R.drawable.icon_img02)
-                    //    .setText(R.string.title_section2)
+                                //    .setText(R.string.title_section2)
                         .setTabListener(this));
         actionBar.addTab(
                 actionBar.newTab()
                         .setIcon(R.drawable.icon_img03)
-//                        .setText(R.string.title_section3)
 
                         .setTabListener(this));
-
-
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -152,9 +148,6 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
                 case 2:
                     cur_fragment = new Frag_List();
                     break;
-
-
-
             }
 
 
@@ -184,3 +177,4 @@ public class MonitorActivity extends ActionBarActivity implements ActionBar.TabL
     }
 
 }
+

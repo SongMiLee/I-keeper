@@ -7,7 +7,7 @@
     <!-- Non focused states -->
     <item android:state_focused="false" android:state_selected="false"
         android:state_pressed="false"
-        android:drawable="@drawable/tab_img05" />
+        android:drawable="@drawable/tab_img02" />
     <item android:state_focused="false" android:state_selected="true"
         android:state_pressed="false"
         android:drawable="@drawable/tab_img06" />
